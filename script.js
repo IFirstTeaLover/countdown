@@ -10,17 +10,48 @@ function updateCountdown() {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display results
-    document.getElementById('days').textContent = `${days} Дней`;
-    document.getElementById('hours').textContent = `${hours} Часов`;
-    document.getElementById('minutes').textContent = `${minutes} Минут`;
-    document.getElementById('seconds').textContent = `${seconds} Секунд`;
+    document.getElementById('days').textContent = `${days} ${getTranslation('days')}`;
+    document.getElementById('hours').textContent = `${hours} ${getTranslation('hours')}`;
+    document.getElementById('minutes').textContent = `${minutes} ${getTranslation('minutes')}`;
+    document.getElementById('seconds').textContent = `${seconds} ${getTranslation('seconds')}`;
 
     // If the countdown is over
     if (distance < 0) {
         clearInterval(interval);
-        document.getElementById('countdown').innerHTML = "Новый год!";
+        document.getElementById('countdown').innerHTML = getTranslation('happyNewYear');
     }
 }
+
+// Translation function
+function getTranslation(key) {
+    const lang = navigator.language || navigator.userLanguage;
+    const translations = {
+        en: {
+            heading: "Countdown to New Year 2025",
+            days: "Days",
+            hours: "Hours",
+            minutes: "Minutes",
+            seconds: "Seconds",
+            happyNewYear: "Happy New Year!"
+        },
+        ru: {
+            heading: "Обратный отсчет до Нового года 2025",
+            days: "Дней",
+            hours: "Часов",
+            minutes: "Минут",
+            seconds: "Секунд",
+            happyNewYear: "С Новым Годом!"
+        }
+    };
+
+    // Set default to English if the language is not supported
+    const userLang = lang.startsWith('ru') ? 'ru' : 'en';
+    return translations[userLang][key];
+}
+
+// Update the heading and page title based on the user's language
+document.getElementById('heading').textContent = getTranslation('heading');
+document.getElementById('pageTitle').textContent = getTranslation('heading');
 
 // Update the countdown every second
 const interval = setInterval(updateCountdown, 1000);
