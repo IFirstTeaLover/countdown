@@ -55,5 +55,5 @@
     document.getElementById('pageTitle').textContent = getTranslation('heading');
 
     // Update the countdown every second
-    const interval = setInterval(updateCountdown, 1000);
+
 setInterval(updateCountdown, 1000);
