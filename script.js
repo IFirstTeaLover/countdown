@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+
     function updateCountdown() {
         const targetDate = new Date('January 1, 2025 00:00:00').getTime();
         const now = new Date().getTime();
@@ -56,4 +56,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update the countdown every second
     const interval = setInterval(updateCountdown, 1000);
-});
+setInterval(updateCountdown, 1000);
